@@ -3,6 +3,8 @@
 # Docs: https://gh.io/actions-lockfile
 version: 'v0.0.3'
 workflows:
+    '.github/workflows/lockfile.yml':
+        - 'actions/checkout@v7.0.1'
     '.github/workflows/mirror.yml':
         - 'actions/checkout@v7.0.1'
         - 'pixta-dev/repository-mirroring-action@v1.1.1'
