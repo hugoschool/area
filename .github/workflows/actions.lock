@@ -6,14 +6,29 @@ workflows:
     '.github/workflows/mirror.yml':
         - 'actions/checkout@v7.0.1'
         - 'pixta-dev/repository-mirroring-action@v1.1.1'
+    '.github/workflows/zizmor.yml':
+        - 'actions/checkout@v7.0.1'
+        - 'zizmorcore/zizmor-action@v0.9.0'
 dependencies:
     'actions/checkout@v7.0.1':
         ref: 'v7.0.1'
         commit: 'sha1-3d3c42e5aac5ba805825da76410c181273ba90b1'
         owner_id: 44036562
         repo_id: 197814629
+    'github/codeql-action@33d7b85da1a04171e211befe2c739303b9a4c066':
+        ref: 'v4.39.3'
+        commit: 'sha1-33d7b85da1a04171e211befe2c739303b9a4c066'
+        owner_id: 9919
+        repo_id: 259445878
     'pixta-dev/repository-mirroring-action@v1.1.1':
         ref: 'v1.1.1'
         commit: 'sha1-674e65a7d483ca28dafaacba0d07351bdcc8bd75'
         owner_id: 3306626
         repo_id: 211045617
+    'zizmorcore/zizmor-action@v0.9.0':
+        ref: 'v0.9.0'
+        commit: 'sha1-bd12b495c90993a4301c73398142281a61499af3'
+        owner_id: 210636713
+        repo_id: 985558803
+        uses:
+            - 'github/codeql-action@33d7b85da1a04171e211befe2c739303b9a4c066'
