@@ -1,8 +1,18 @@
 import express, { type Express, type Request, type Response } from 'express';
 import jwt from "jsonwebtoken";
+import swaggerUi from "swagger-ui-express";
+import { openapi } from "./openapi.ts";
 
 const app: Express = express();
 const port = Number(process.env.PORT) || 3000;
+
+app.get("/openapi.json", (_: Request, res: Response) => {
+    res.json(openapi);
+});
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(openapi, {
+    customSiteTitle: "ts-express POC API",
+}));
 
 app.get("/ping", (_: Request, res: Response) => {
     res.send("ok");
