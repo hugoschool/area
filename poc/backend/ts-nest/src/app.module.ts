@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { PingController } from './ping/ping.controller.js';
 import { LoginController } from './login/login.controller.js';
@@ -19,7 +18,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
       inject: [ConfigService],
     })
   ],
-  controllers: [AppController, PingController, LoginController],
+  controllers: [PingController, LoginController],
   providers: [AppService],
 })
 export class AppModule {}

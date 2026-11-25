@@ -17,9 +17,6 @@ export class LoginController {
     @HttpCode(200)
     @Post()
     @ApiOperation({ summary: 'Generate a JWT' })
-    @ApiBody({
-        schema: { type: 'object', example: {} },
-    })
     @ApiOkResponse({
         description: 'Signed JWT',
         content: {
