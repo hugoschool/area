@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@hono/node-server": "^2.1.3",
+    "@hono/swagger-ui": "^0.6.2",
     "hono": "^4.13.16",
     "jsonwebtoken": "^9.0.3"
   },

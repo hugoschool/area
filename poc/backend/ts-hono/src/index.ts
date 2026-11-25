@@ -1,9 +1,15 @@
 import { serve } from "@hono/node-server";
+import { swaggerUI } from "@hono/swagger-ui";
 import { Hono } from "hono";
+import openapi from "./openapi.js";
 import jwt from "jsonwebtoken";
 
 const app = new Hono();
 const port = Number(process.env.PORT) || 3000;
+
+app.get("/openapi.json", (c) => c.json(openapi));
+
+app.get("/docs", swaggerUI({ url: "/openapi.json" }));
 
 app.get("/ping", (c) => {
     return c.text("ok");
