@@ -7,6 +7,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+
+	_ "src/docs"
 )
 
 type LoginResponse struct {
@@ -17,10 +21,26 @@ type ErrorResponse struct {
 	Error string `json:"error"`
 }
 
+// @title AREA POC API
+// @version 1.0
+// @description POC backend implementing GET /ping and POST /login.
+// @BasePath /
+
+// Ping godoc
+// @Summary Ping
+// @Produce plain
+// @Success 200 {string} string "ok"
+// @Router /ping [get]
 func ping(c *gin.Context) {
 	c.String(http.StatusOK, "ok")
 }
 
+// Login godoc
+// @Summary Login
+// @Produce json
+// @Success 200 {object} LoginResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /login [post]
 func login(c *gin.Context) {
 	claims := jwt.MapClaims{"time": time.Now().Unix()}
 	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString([]byte(os.Getenv("JWT_SECRET")))
@@ -36,6 +56,14 @@ func main() {
 
 	r.GET("/ping", ping)
 	r.POST("/login", login)
+	swaggerHandler := ginSwagger.WrapHandler(swaggerFiles.Handler)
+	r.GET("/docs/*any", func(c *gin.Context) {
+		if c.Param("any") == "/" {
+			c.Redirect(http.StatusFound, "/docs/index.html")
+			return
+		}
+		swaggerHandler(c)
+	})
 
 	port := os.Getenv("PORT")
 	if port == "" {
