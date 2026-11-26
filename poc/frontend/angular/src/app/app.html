@@ -1,0 +1,43 @@
+<main class="main">
+    <h1 class="font-bold text-5xl">TODO</h1>
+    <p>My awesome TODO app for the AREA POC!</p>
+
+    <ul class="list-disc mx-7">
+        @for (todo of todos(); track $index) {
+            <div class="flex flex-row gap-2">
+                <li>{{ todo }}</li>
+                <button
+                    class="border-2 px-2"
+                    type="button"
+                    (click)="removeTodo($index)"
+                >
+                    Remove
+                </button>
+            </div>
+        }
+    </ul>
+
+    <br />
+
+    <div>
+        <input
+            class="border-2"
+            type="text"
+            placeholder="Enter your TODO here!"
+            [value]="todo_input()"
+            (input)="todo_input.set($any($event.target).value)"
+            (keydown.enter)="addTodo()"
+        />
+        <button class="border-2 px-2" type="button" (click)="addTodo()">
+            Add
+        </button>
+    </div>
+
+    <footer>
+        <h4>
+            IP: {{ ip() }}
+        </h4>
+    </footer>
+</main>
+
+<router-outlet />
