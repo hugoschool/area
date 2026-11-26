@@ -2,7 +2,6 @@ import { Controller, HttpCode, InternalServerErrorException, Post } from '@nestj
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import {
-    ApiBody,
     ApiInternalServerErrorResponse,
     ApiOkResponse,
     ApiOperation,

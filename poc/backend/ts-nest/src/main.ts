@@ -11,7 +11,9 @@ async function bootstrap() {
     .addTag('PoC')
     .build();
   const documenFactory = () => SwaggerModule.createDocument(app, config)
-  SwaggerModule.setup('api', app, documenFactory)
+  SwaggerModule.setup('api', app, documenFactory, {
+    jsonDocumentUrl: 'openapi.json'
+  })
   SwaggerModule.setup('docs', app, documenFactory)
   await app.listen(process.env.PORT ?? 3000);
 }
