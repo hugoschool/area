@@ -1,0 +1,21 @@
+[project]
+name = "py-fastapi"
+version = "0.1.0"
+description = ""
+authors = []
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.165.0",
+    "pydantic>=2.14.4",
+    "pyjwt>=2.15.1",
+]
+
+[project.scripts]
+py-fastapi = "py_fastapi:main"
+
+[tool.fastapi]
+entrypoint = "py_fastapi:app"
+
+[build-system]
+requires = ["uv_build>=0.13.9,<0.14.0"]
+build-backend = "uv_build"
